@@ -1,0 +1,94 @@
+Aufgabe 1: SQL (20 Minuten)
+Wir betrachten die in der Vorlesung behandelte Datenbank mit den Tabellen Maschinen, Mit-
+arbeiter, Gehalt, Kind. Beispieltabellen aus denen sich auch das Datenbankschema ablesen
+lässt, finden sich am Anfang dieser Klausur. Diesen Zettel können Sie ruhig aus der Klausur
+herauslösen. Notizen, die Sie darauf machen, werden nicht gewertet.
+
+Schreiben Sie bitte SQL-Anweisungen, die die folgenden Informationen liefern.
+
+
+a) Geben Sie für jede Krankenkasse aus: den Kürzel der Krankenkasse und
+16,2% der Gesamtsumme aller Geh¨ alter (Spaltenüberschrift
+” Beitrag“), die
+für alle Mitglieder dieser Krankenkasse insgesamt vom Betrieb aufgebracht wer-
+den müssen, sowie die Anzahl der Mitglieder der jeweiligen Krankenkasse im
+Betrieb. Sortiert werden soll aufsteigend nach Kürzel der Krankenkasse.
+
+select krankenkasse as Kuerzel, (avg(g.betrag) * 0.162) as Beitrag
+from personal as p 
+join gehalt as g on g = p.geh_stufe = g.geh_stufe
+group by krankenkasse
+
+
+b) Für jede Abteilung des Betriebes möchte man wissen, wie viele Maschinen
+mit einem Anschaffungsdatum vor 2000 von Mitarbeitern bedient werden dürfen.
+Das Ergebnis soll mit den
+¨
+Uberschriften
+” Abteilungsname“ für den Namen der Abteilung und ” Maschinenzahl“ für die Anzahl der Maschinen 
+versehen werden. Wie sieht die SQL-Anfrage aus?
+
+select a.name as Abteilungsname, count(*)
+from maschine as m 
+join personal as p on m.pnr = p.pnr
+join abteilung as a on p.abt_nr = a.abt_nr 
+m.ansch_datum < 2000
+group by p.abt_nr 
+
+Ergebnis: 
+Abteilungsname | Maschinenzahl“
+Produktion     | 4
+
+c) Ist die folgende Anfrage korrekt? Ja, nein?
+SELECt DistincT K_NAME, k.K_Vorn FROm
+KIND k WHERE EXISTS (
+seLECT
+* FROm
+personAL p
+Where Name = k_name AND (GEH_STUFE = ’it3’ or p.geh_stufe = ’it4’));
+Wenn die Anfrage korrekt ist, dann geben Sie das Ergebnis der Anfrage an.
+Wenn die Anfrage syntaktische Fehler enthält, dann listen Sie die Fehler auf.
+
+Antwort: Tabellennamen sind Case-Sensitive. Was jedoch kein Problem ist, ist der fehlende AS 
+Bezeichner zwischen Kind und K. 
+
+
+d) Benutzen Sie bitte Unterabfragen und vermeiden Sie Joins: Geben Sie bitte Na-
+me, Vorname und Personalnummer aller Mitarbeiter an, bei denen minde-
+stens ein Kind im gleichen Jahr geboren ist, indem auch mindestens eine Maschine
+angeschafft worden ist.
+
+select NAME, VORNAME, PNR
+from PERSONAL as p
+where exists (
+	select *
+	from MASCHINE as ma
+	where ma.ansch_datum = (
+		select k.K_GEB
+		from KIND as k 
+		where k.PNR = p.PNR
+}
+
+
+e) Tragen Sie bitte das Ergebnis der folgenden Anfrage in die Tabelle ein:
+SELECT Krankenkasse , Name, Geh_stufe
+FROM Personal P
+WHERE EXISTS
+(SELECT *
+FROM Gehalt G
+WHERE G. Geh stufe = P. Geh stufe AND P. Krankenkasse IN ( ’dak’ , ’aok ’)
+AND G. Betrag < 3275)
+ORDER BY 1 ,3;
+
+Anmerkung meinerseits: Order by, es wird nach der ersten Spalte und falls es hier 
+Uneinigkeit herrschen sollte, wird die dritte Spalte betrachtet. 
+
+Krankenkasse | Name   | Geh stufe 
+aok          | Schulz | it1
+...          | ...    | ...
+dak          | Krause | it3 
+
+Welche Frage wird mit der oberen Anfrage beantwortet?
+
+Gib alle Mitarbeiter aus, welche weniger als 3275 Euro verdienen und bei der DAK oder der AOK krankenversichert sind. 
+
