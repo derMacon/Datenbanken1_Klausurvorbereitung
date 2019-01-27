@@ -1,0 +1,37 @@
+SS16, Aufg. 1:
+Definitionen und Begriffe
+
+a) Welche Bestandteile einer Tabelle gehören zum zeitvarianten Teil der Tabelle?
+
+A: Zeilen (Tupel), Anzahl der Zeilen. 
+
+------
+
+b) Ein Schlüssel ist ...
+
+A: identifizierend (Folie 9: Eine Attributkombination nicht, diesen nennt man genau genommen 
+   zusammengesetzten Schluessel). 
+
+------
+   
+c) In SQL-Ausdrücken ist s IN (’aok’, ’dak’) gleichbedeutend mit...
+
+A: s = 'aok' or s = 'dak'
+
+------
+
+d) In ER-Diagrammen werden Beziehungstypen dargestellt durch...
+
+A: Rauten
+
+------
+
+e) In N:M Beziehungstypen ergibt sich der Primarschlüssel des Beziehungstyps
+
+A: aus den Primaerschluesseln aller beteiligten Entitytypen. 
+
+------
+
+f) Bei einem LEFT OUTER JOIN der Tabellen L und R werden
+
+A: NULL-Zeilen in R ergaenzt. 
