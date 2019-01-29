@@ -1,0 +1,35 @@
+WS1516, Aufg. 1:
+
+a)  Welche Bestandteile einer Tabelle gehören zum zeitinvarianten Teil der Tabelle?
+
+A: Tabellennamen und Spaltenueberschriften.
+
+------
+
+b) Die Abfrage SELECT pnr FROM personal; liefert immer eine Tabelle... 
+
+A: mit einer Spalte. 
+
+------
+
+c)  Die Abfrage SELECT count(pnr) FROM personal; liefert immer eine Tabelle...
+
+A: mit einer Zeile und einer Spalte. 
+
+------
+
+d) Bei einem LEFT OUTER JOIN... 
+
+A: werden mglw. rechts Zeilen mit NULL-Werten ergaenzt. 
+
+------
+
+e) Ein Primärschlüssel
+
+A: ist eine minimal identifizierende Attributkombination welche niemals NULL sein darf. 
+
+------
+
+f) Grundelemente von ER-Diagrammen sind...
+
+A: Ovale fuer Attribute und Rauten fuer Beziehungen. 
