@@ -1,0 +1,60 @@
+DB1, Klausur WS1314: Aufg. 1
+
+a) Welche Bestandteile einer Tabelle gehören zum zeitinvarianten Teil einer Tabelle?
+ Zeilen (Tupel)
+ Spaltenüberschriften
+ Tabellenname
+ Anzahl der Zeilen
+ 
+A: Spaltenueberschriften und Tabellenname.
+
+------
+
+b) In SQL-Ausdrücken ist s IN m gleichbedeutend mit
+ s =ANY m
+ s <>ANY m
+ s =ALL m
+ s <>ALL m
+ 
+A: s = any m 
+
+------
+
+c) Welches sind die Bestandteile eines Datenbanksystems?
+ Datenbank
+ Datenbankmanagementsystem
+ Modell
+ SQL-Anfragen
+ 
+ A: Datenbank und DBMS
+ 
+ ------
+ 
+ d) Grundelemente von ER-Diagrammen sind...
+ Ovale für Attribute
+ Herzen für Beziehungen
+ Rauten für Beziehungen
+ Rechtecke für Attribute
+ 
+A: Ovale fuer Attribute und Rauten fuer Beziehungen. 
+ 
+------
+
+e) Welches sind Standard-Operationen über einzelnen Relationen?
+ Konsternierung
+ Projektion
+ Selektion
+ Verdichtung
+ 
+ A: Projektion und Selektion. 
+ 
+ ------
+ 
+f) Welches sind Teilsprachen von SQL — Structured Query Language?
+ DDL (Data Definition Language)
+ DAL (Data Access Language)
+ DML (Data Manipulation Language)
+ DEL (Data Extraction Language)
+ 
+ A: DDL und DML 
+ 
