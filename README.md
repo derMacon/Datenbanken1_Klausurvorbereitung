@@ -7,4 +7,4 @@ Loesungen der Klausuren von Prof. Hoffmann.
 - [Klausur SS16](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/blob/master/silas/Klausuren/Klausur_SS16/_klausurSS16.pdf)
 
 Sonstiges
-- [Alle Beispiele aus der Vorlesung](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/tree/master/silas/Vorlesungsunterlagen)
+- [Alle Beispiele aus der Vorlesung](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/blob/master/silas/Vorlesungsunterlagen/beispieleAusDerVL.sql)
