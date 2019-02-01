@@ -5,3 +5,6 @@ Loesungen der Klausuren von Prof. Hoffmann.
 - [Klausur WS1314](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/blob/master/silas/Klausuren/Klausur_WS1314/_klausurWS1314.pdf)
 - [Klausur WS1516](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/blob/master/silas/Klausuren/Klausur_WS1516/_klausurWS1516.pdf)
 - [Klausur SS16](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/blob/master/silas/Klausuren/Klausur_SS16/_klausurSS16.pdf)
+
+Sonstiges
+- [Alle Beispiele aus der Vorlesung](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/tree/master/silas/Vorlesungsunterlagen)
