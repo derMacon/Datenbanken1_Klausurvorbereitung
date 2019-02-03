@@ -28,7 +28,16 @@ order by 3 desc, 2;
 teilungsname in einer Tabelle mit der Ueberschrift ABT NR, NAME, Gesamtsumme
 ausgegeben werden. */
 
-select a.abt_nr as 'ABT NR', a.name as NAME, (sum(pr.p_betrag)) as Gesamtsumme
+-- Ohne Praemien
+select a.abt_nr as 'ABT NR', a.name as NAME, (sum(g.betrag)) as Gesamtsumme
+from personal as p 
+join gehalt as g using(geh_stufe)
+join abteilung as a using(abt_nr)
+group by abt_nr; 
+
+-- Mit Praemien (funktioniert mit Null-Werten leider nicht)
+select a.abt_nr as 'ABT NR', a.name as NAME, 
+(sum(g.betrag) + sum(pr.p_betrag)) as Gesamtsumme
 from personal as p 
 join gehalt as g using(geh_stufe)
 join abteilung as a using(abt_nr)
@@ -36,5 +45,18 @@ left join praemie as pr using(pnr)
 group by abt_nr; 
 
 
+/* c) Ist die folgende Anfrage korrekt? Ja 2 Nein 2
+select Name, Vorname, sum(p_betrag)"Praemien" FROm
+Praemie p, PERSONaL
+WHERE p.PNR=Personal.pnr GROUP BY Name, personal.Vorname
+HAVING Count(p.PNR)>1;
+Wenn die Anfrage korrekt ist, dann geben Sie das Ergebnis der Anfrage an.
+Wenn die Anfrage syntaktische Fehler enthält, dann listen Sie die Fehler auf.
 
+Nicht korrekte Anfrage, da die Bezeichner der Tabellen (Tabellennamen) 
+case-sensitiv sind. */
 
+select Name, Vorname, sum(p_betrag)"Praemien" FROm
+praemie p, personal
+WHERE p.PNR=personal.pnr GROUP BY Name, personal.Vorname
+HAVING Count(p.PNR)>1;

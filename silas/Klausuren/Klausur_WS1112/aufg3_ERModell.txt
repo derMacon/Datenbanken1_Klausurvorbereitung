@@ -1,0 +1,12 @@
+WS1112, Aufg. 3 ER-Modell
+
+Entity Deklarationen: 
+Haus = {HausNr, Anz_SW, Flaeche}
+Tier = {RegNr, Alter}
+Saeugetier = {G_Jahr, N_Jahr}
+Insekt = {Vorkommen, Art}
+
+Relationship-Deklarationen:
+wohnt = ({Haus, Tier}, {}) Typ 1:N, PS: RegNr 
+isSaeugetier = ({Saeugetier, Tier}, {}) Typ Is-A, PS: RegNr
+isInsekt = ({Insekt, Tier}, {}) Typ Is-A, PS: RegNr
