@@ -29,11 +29,12 @@ teilungsname in einer Tabelle mit der Ueberschrift ABT NR, NAME, Gesamtsumme
 ausgegeben werden. */
 
 -- Ohne Praemien
-select a.abt_nr as 'ABT NR', a.name as NAME, (sum(g.betrag)) as Gesamtsumme
+select a.abt_nr as 'ABT NR', a.name as NAME, sum(g.betrag) as Gesamtsumme
 from personal as p 
 join gehalt as g using(geh_stufe)
 join abteilung as a using(abt_nr)
-group by abt_nr; 
+group by abt_nr
+order by Gesamtsumme desc; 
 
 -- Mit Praemien (funktioniert mit Null-Werten leider nicht)
 select a.abt_nr as 'ABT NR', a.name as NAME, 
@@ -44,8 +45,20 @@ join abteilung as a using(abt_nr)
 left join praemie as pr using(pnr)
 group by abt_nr; 
 
+/* d) Geben Sie fuer alle Kinder, deren Muetter oder Vaeter mehr als 3000 Euro verdienen
+und Mitglied der AOK oder DAK sind, den Kindernachnamen, Kindervornamen,
+Nachnamen der Mutter oder des Vaters, die Hoehe des Gehaltes und die Krankenkasse 
+aufsteigend sortiert nach der H¨ohe des Gehaltes aus. */
 
-/* c) Ist die folgende Anfrage korrekt? Ja 2 Nein 2
+select k.k_name, k.k_vorname, p.name, g.betrag, p.krankenkasse
+from kind as k 
+join personal as p using(pnr)
+join gehalt as g using(geh_stufe)
+where 3000 < g.betrag and p.krankenkasse in ('AOK', 'DAK')
+order by g.betrag; 
+
+
+/* e) Ist die folgende Anfrage korrekt? Ja 2 Nein 2
 select Name, Vorname, sum(p_betrag)"Praemien" FROm
 Praemie p, PERSONaL
 WHERE p.PNR=Personal.pnr GROUP BY Name, personal.Vorname
