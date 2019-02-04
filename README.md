@@ -8,6 +8,7 @@ Loesungen der Klausuren von Prof. Hoffmann.
 - [Klausur SS16](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/blob/master/silas/Klausuren/Klausur_SS16)
 
 Sonstiges
-- [Alle Beispiele aus der Vorlesung](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/blob/master/silas/Vorlesungsunterlagen/beispieleAusDerVL.sql)
 - [Anleitung zum Einrichten der MySQL-Workbench](http://intern.fh-wedel.de/mitarbeiter/mpa/db/ws18/anleitungen-mysql/)
+- [Alle Beispiele aus der Vorlesung](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/blob/master/silas/Vorlesungsunterlagen/beispieleAusDerVL.sql)
 - [Zusatzaufgaben aus der Vorlesung](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/blob/master/silas/Vorlesungsunterlagen/zusatzaufgaben.sql)
+- [Uebung WS1819](https://github.com/derMacon/Datenbanken1_Klausurvorbereitung/tree/master/silas/Uebung)
