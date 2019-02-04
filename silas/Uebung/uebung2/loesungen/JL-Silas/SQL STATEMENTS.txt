@@ -1,0 +1,245 @@
+2.1:
+select *
+from person p
+inner join student s on s.pin = p.pin and p.vname like 'A%' and p.vname not like '%k%'
+
+@sh:
+select p.vname as vorname, p.nname as nachname
+from person as p 
+join student as s on s.pin = p.pin 
+where p.vname like 'A%' and p.vname not like '%k%' and p.nname not like '%k%';
+
+2.2:
+SELECT a.plz as PLZ_HH
+FROM adresse a
+WHERE a.ort = "Hamburg"
+
+@sh:
+select plz as hamburgerPLZ
+from adresse
+where ort = 'Hamburg';
+
+2.3:
+select count(titel) as Anzahl_Prof
+from mitarbeiter m
+where m.titel like '%Prof.%'
+
+@sh:
+select count(titel) as Anzahl_Prof
+from mitarbeiter 
+where titel like '%Prof.%'
+
+2.4:
+select min(bafoeg) as kleinstes_bafoeg, max(bafoeg) as groesstes_bafoeg
+from student
+@sh: schaut gut aus
+
+3.1:
+select a.pin, p.vname as vorname, p.nname as nachname, count(b.veranstaltung_id) as anzahlDerVeranstaltungen
+from assistent as a
+join betreut as b on a.pin = b.pin
+join person as p on a.pin = p.pin
+group by b.pin
+order by anzahlDerVeranstaltungen desc;
+@sh: schaut gut aus
+
+3.2:
+select max(k.kk_name)
+from krankenkasse k
+inner join person p on p.krankenkasse_id = k.krankenkasse_id
+
+@sh:
+select max(k.kk_name) as maxMitglieder
+from krankenkasse k
+join person p on p.krankenkasse_id = k.krankenkasse_id
+
+3.3: @sh, notwendig beim count auf unterschiedliche Studentenpins zu vergleichen da es durch self join sonst zu Problemen kommt. 
+select x.strasse, x.plz as postleitzahl, x.ort, count(distinct x.pin) as anzahl
+from adresse as x, adresse as y
+where x.adresse_id <> y.adresse_id and x.strasse = y.strasse and x.plz = y.plz and x.ort = y.ort
+group by strasse
+order by strasse;
+
+3.4: @sh
+select p.pin, p.geschlecht, p.vname, p.nname, a.aufgabe_bez as aufgabe
+from person as p
+join sonst_mit as m on m.pin = p.pin
+join aufgabe as a on m.aufgabe_id = a.aufgabe_id
+union
+select p.pin, p.geschlecht, p.vname, p.nname, a.aufgabe_bez as aufgabe
+from person as p
+join assistent as m on m.pin = p.pin
+join aufgabe as a on m.aufgabe_id = a.aufgabe_id
+order by aufgabe
+
+3.5:
+select v.VERANSTALTUNG_BEZ as Veranstaltung,  count(distinct termin.tag) as Anzahl_Tage
+from veranstaltung v
+inner join veranst_termin on v.VERANSTALTUNG_ID = veranst_termin.VERANSTALTUNG_ID
+inner join termin on veranst_termin.TERMIN_ID = termin.TERMIN_ID
+group by v.veranstaltung_bez
+having Anzahl_Tage >= 3
+
+@sh:
+select v.veranstaltung_bez as veranstaltung, count(v.veranstaltung_id) as anzahlTage
+from veranstaltung as v
+join veranst_termin as vt on v.veranstaltung_id = vt.veranstaltung_id
+join termin as t on vt.termin_id = t.termin_id
+group by v.veranstaltung_id
+having anzahlTage >= 3;
+
+select v.veranstaltung_bez as veranstaltung, count(v.veranstaltung_id) as anzahlTage
+from veranstaltung as v
+join veranst_termin as vt on v.veranstaltung_id = vt.veranstaltung_id
+join termin as t on vt.termin_id = t.termin_id
+group by v.veranstaltung_id
+having anzahlTage < 3;
+
+
+3.6: @sh
+select p.vname as vorname, p.nname as nachname, st.sl_name as studienleistung, pr.note
+from student as s
+join pruefung as pr on s.pin = pr.pin 
+join studienleistung as st on pr.studienleistung_id = st.studienleistung_id
+join person as p on s.pin = p.pin
+where p.vname like '%Alex%' and pr.note < 5; 
+
+3.7:
+select v.VERANSTALTUNG_BEZ as Veranstaltung_Name, count(d.pin) as Anzahl_Dozenten
+from veranstaltung as v
+inner join liest as l on l.VERANSTALTUNG_ID = v.VERANSTALTUNG_ID
+inner join dozent as d on d.pin = l.pin
+group by v.VERANSTALTUNG_BEZ
+order by Anzahl_Dozenten desc
+
+@sh:
+select  v.veranstaltung_bez as veranstaltung, count(v.veranstaltung_id) as profAnzahl
+from liest as l
+join veranstaltung as v on l.veranstaltung_id = v.veranstaltung_id
+group by l.veranstaltung_id
+order by profAnzahl desc;
+
+3.8
+select d.Wochentag, count(v.veranstaltung_id) as V_Anzahl
+from veranst_termin v
+join termin t
+join tag d
+where v.termin_id = t.termin_id and d.tag = t.tag
+group by d.wochentag
+order by V_Anzahl desc
+
+@sh:
+select ta.wochentag, count(t.tag) as veranstaltungsanzahl
+from termin as t
+join veranst_termin as v on t.termin_id = v.termin_id
+join tag as ta on t.tag = ta.tag
+group by t.tag
+order by veranstaltungsanzahl desc;
+
+4.1: @sh
+select round(year(curdate()) - avg(year(p.gebdat)), 0) as durchschnittsalter
+from person as p 
+join student as s on p.pin = s.pin 
+
+4.2: @sh
+select distinct r.raum_bez as raumbezeichnung, round((count(*) * 100 / (select count(*) from termin)), 0) as prozentualerAnteil
+from veranst_termin v
+join raum as r on v.raum_id = r.raum_id
+group by v.veranstaltung_id
+having prozentualerAnteil >= 30;
+
+4.3: @sh
+select max(g.gehalt) as maxAusgezahltesGehalt, min(g.gehalt) as minAusgezahltesGehalt
+from mitarbeiter as m 
+join gehaltsstufe as g on m.gehaltsstufe_id = g.gehaltsstufe_id;
+
+select max(gehalt) as maxMoeglichesGehalt, min(gehalt) as minMoeglichesGehalt
+from gehaltsstufe;
+
+4.4: @sh
+select count(pin) as anzahl
+from student 
+where bafoeg > (
+	select avg(bafoeg)
+	from student
+)
+
+4.5:
+select p.vname as P1_Vorname, p.nname as P1_Nachname, pb.vname as P2_Vorname, pb.nname as P2_Nachname,
+case when p.geschlecht = pb.geschlecht then 'Gleich' else 'Unterschiedlich' end as Geschlecht
+from assistent as aa
+inner join person as p on p.pin = aa.pin
+inner join person as pb on p.pin <> pb.pin
+
+4.6: @sh
+select p.vname as Vorname, p.nname as Nachname, coalesce(m.titel, 'Keiner') as Titel
+from dozent d
+join person p
+join mitarbeiter m
+where d.pin = p.pin and d.pin = m.pin
+group by d.pin
+
+4.7: @sh
+select distinct fachschaft_bez as bezeichnung
+from dozent as d
+join fachschaft as f on d.fachschaft_id = f.fachschaft_id
+join veroeffentlichung as v on v.pin = d.pin;
+
+4.8: @sh
+select round(avg(note), 1)
+from pruefung
+where pin = 3117
+
+4.9: @sh, damit sind alle verschiedenen Versionen (z.B. Nachschreibe-Klausuren / verschiedene Semester) gemeint.
+select p.vname as vorname, p.nname as nachname, count(distinct studienleistung_id) as anzahl
+from pruefung as pr
+join person as p on pr.mit_pin = p.pin
+group by mit_pin
+having anzahl >= 10
+order by anzahl;
+
+4.10: @sh 
+select fr.fr_bez as frachrichtung, round(count(p.frauenPin) * 100 / count(*), 0) as prozentualeFrauenquote
+from student as st
+left join (
+	select pin as frauenPin
+    from person
+    where geschlecht = 'w'
+) as p on st.pin = p.frauenPin
+join fachrichtung as fr on st.fachrichtung_id = fr.fachrichtung_id
+where fr.fr_bez like 'Technische Informatik%'
+union
+select fr.fr_bez as frachrichtung, round(count(p.frauenPin) * 100 / count(*), 0) as prozentualeFrauenquote
+from student as st
+left join (
+	select pin as frauenPin
+    from person
+    where geschlecht = 'w'
+) as p on st.pin = p.frauenPin
+join fachrichtung as fr on st.fachrichtung_id = fr.fachrichtung_id
+where fr.fr_bez like 'Wirtschaftsinformatik%';
+
+
+4.11.1: @sh
+select l.land, count(s.pin) as anzahl
+from lkz as l 
+join adresse as a on a.lkz = l.lkz
+join student as s on a.pin = s.pin
+group by l.land;
+
+4.11.2: @sh
+select r.raumart, a.RAUMART_BEZ, count(r.raumart) as anzahl
+from raum as r
+join raumart as a on r.raumart = a.raumart
+group by raumart
+order by anzahl desc;
+
+4.11.3: @sh
+select count(v.buchtitel) as anzahlDerBuecher, p.vname as vorname
+from veroeffentlichung as v 
+join dozent as d on d.pin = v.pin
+join person as p on p.pin = d.pin
+group by d.pin
+order by anzahlDerBuecher desc, vorname asc;
+
+

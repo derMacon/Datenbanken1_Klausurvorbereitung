@@ -1,0 +1,81 @@
+Unterschiede: 
+
+Generell: 
+- Ihr habt keine Semikolons nach den Statements. Ausfuehrung der Statements zumindest in der 
+  Workbench nicht meoglich. 
+- Using Operator im join Block? Es ist nicht noetig vor jeden Tabellennamen
+  ein fh_abbild zu schreiben. 
+- Keine Konsistenz in der Gross/Kleinschreibung der Operatoren
+
+2.1: Ihr habt noch geprueft, dass ein a am Anfang vom Nachnamen zu stehen hat. In der Aufgabe steht 
+aber nur, dass man alle Studenten ausgeben soll die ein A am Anfang vom Namen haben. 
+
+2.4: Null Werte werden generell von Aggregationsfunktionen ignoriert. Euer Where-Statement koennt ihr
+euch sparen. 
+
+3.1: Kann bei euch nicht kompiliert werden, das grosse P wird nicht gefunden muss beim as in einen
+Kleinbuchstaben umbenannt werden oder in den uebrigen Abfragen gross. 
+
+3.2: Siehe 3.1, ausserdem wird anz nicht gefunden weil ihr es Anzahl genannt habt. Ansonsten soll 
+man nur die Krankenkasse mit den meisten Mitgliedern ausgeben und keine Aufschluesselung ueber die 
+gesamten Mitgliederzahlen. Wir haben das momentan aber auch noch falsch. 
+
+3.3: Muesst beim count auf distincte Studentenpins schauen. Prueft einmal haendisch nach wie viele 
+Leute z.B. in der Goethestraße 7 wohnen (select count(*) from adresse where strasse = 'Goethestraße 7';)
+Ihr zaehlt nur die gleichen Strassennamen aber nicht die wirklich identischen Addressen. 
+
+3.4: Siehe 3.1, koennt eventuell ueber eine Subquerie mit einer Union nachdenken. Sieht vielleicht 
+schicker aus. 
+
+3.5: Mindestens 3 Tage. Ausserdem sollen noch die Veranstaltungen mit zu wenig Tagen herausgefiltert
+werden. 
+
+3.6: Siehe 3.1, vielleicht noch den Namen der Pruefung mit ausgeben. Momentan ist es halt nur die 
+PruefungsID was nicht so leicht zu interpretieren ist. Warum prueft ihr auf die teilnahme, die 
+Auswertung von groesser 5 schliesst doch eigentlich alle Nullwerte gleich mit aus?
+
+3.7: Anzahl im "as" Bezeichner und im where nur als "anz" benutzt -> Nicht ausfuehrbar
+
+4.1: Siehe Hinweis "Berechnung auf Jahreszahlen reicht. Es muss kein Tagesaktuelles Jahr sein) 
+aller Studenten aus) -> muss eventuell noch gerundet werden. 
+
+4.2: select count(*) as Gesamt, "as Gesamt" kann weggelassen werden. fh_abbild.raum R hier fehlt ein
+as Operator. (Ansonsten komplett andere Ergebnisse als wir haben).
+
+4.3: Ok aber umstaendlich formuliert
+
+4.4: Ok, was fuern Titel :)
+
+4.5: as Bezeichnung vergessen, Gross/Kleinschreibung der gewaehlten Titel beachten, sonst nicht 
+aufuehrbar. Gleichgeschlechtlich soll ueber einen String nicht ueber eine Zahl ausgegeben werden 
+(Stichwort case). Ist die where Bedingung nicht irgendwie redundant? wenn a.pin < b.pin gilt doch 
+automatisch, dass sie ungleich sind?
+
+4.6: Ok
+
+4.7: Ok, Subquerie statt join... kann man machen.
+
+4.8: Warum lasst ihr die Noten 5.0 nicht mitzaehlen? Ist doch an sich Teil der Durchschnittsnote?
+
+4.9: Eventuell noch mehr ausgeben als nur die pins. Schwierig zu vergleichen, sieht aber relativ 
+aehnlich aus. 
+
+4.10: Dachte man soll da fuer jedes Fach die Frauenquote bestimmen und nicht fuer beide zusammen. 
+Ansonsten koennte man die Magic numbers in form von Fachrichtungsids vielleicht durch Text ersetzen. 
+Macht moegliche Aenderungen an der DB moeglich und ist einfach zu aendern. 
+
+4.11.1: Komische Einrueckung, Ergebnisse aber gleich. 
+
+4.11.2: Ok, Titel aber falsch. 
+
+4.11.3: Ok
+
+
+
+
+ 
+
+
+
+
+

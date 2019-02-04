@@ -1,0 +1,15 @@
+Datenbanken 1, ueb01, Jan-Lucas Tschirner (minf 103058), Silas Hoffmann (inf103088), Gruppe 18
+
+ID-Anfaenge der Entities
+Modelle = 0
+Fahrzeuge = 1
+Kunden = 2
+Kanaele = 3
+Ausstattung = 4
+Kategeorie = 5
+
+INSERT INTO Auto-Modell (Modell-ID, Klasse, Modell-Jahr, Einsatzzeitraum-Anfang, Einsatzzeitraum-Ende, Modell-Reihe) VALUES (0123, "A", 2017, 01.01.2018, 01.01.2023, "280")
+INSERT INTO Fahrzeug (Fahrzeug-ID, Modell-ID) VALUES (11, 01)
+INSERT INTO Kunden (Kunden-ID, Vorname, Nachname, Rückmeldung, Kanaele-ID) VALUES (21, "Juergen", "Drews", 1, 31)
+INSERT INTO Ausstattung (Ausstattung-ID, Einsatzzeitraum-Anfang, Einsatzzeitraum-Ende, Kategorie-ID) VALUES (41, 01.01.2018, 01.01.2028, 51)
+INSERT INTO Kategorie (Kategeorie-ID, Kategorie-Bezeichner) VALUES (51, "Marketing")
