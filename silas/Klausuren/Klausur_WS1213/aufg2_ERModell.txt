@@ -1,0 +1,15 @@
+WS1213 - Aufg.2 ERModell
+
+Entity-Relationship-Modell
+Leiten Sie aus dem ER-Diagramm bitte ein Entity-Relationship-Modell ab und
+geben Sie bitte die zugehörigen Entity- und Relationship-Deklarationen an. Be-
+achten Sie wiederum bitte auch die Kardinalitäten der Beziehungen.
+
+Entity-Deklarationen:
+Stadt = ({S_PLZ, S_Name, Einwohnerzahl}, {S_PLZ})
+Restaurant = ({R_Name, Bewertung, R_ID, Adresse(StrasseNR, PLZ, Ort)}, {R_ID})
+Kategorie = ({K_Name, Bedienung, Nationalitaet, Preis}, {K_Name})
+
+Relationship-Deklarationen:
+liegtIn = ({Stadt, Restaurant}, {}) Typ 1:N, PS: S_PLZ, R_ID
+gehoertZu = ({Restaurant, Kategorie}, {}) Typ N:M, PS: R_ID, K_Name
